@@ -1,0 +1,7 @@
+# 将您的自定义域名填写在下方（去掉 # 号），例如：
+# www.example.com
+#
+# 然后在 DNS 服务商处添加 CNAME 记录：
+# 记录类型: CNAME
+# 主机记录: www (或 @)
+# 记录值: <your-username>.github.io
