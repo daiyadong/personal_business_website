@@ -79,7 +79,7 @@
 
     // ---------- Scroll Reveal Animation ----------
     const revealElements = document.querySelectorAll(
-        '.service__card, .portfolio__card, .testimonial__card, .about__highlight, .skill__item'
+        '.service__card, .portfolio__card, .testimonial__card, .about__highlight, .skill__item, .process__step, .tech__card, .faq__item'
     );
 
     function revealOnScroll() {
@@ -117,16 +117,77 @@
         }
     }
 
+    // ---------- FAQ Accordion ----------
+    const faqItems = document.querySelectorAll('.faq__item');
+
+    faqItems.forEach(function (item) {
+        const question = item.querySelector('.faq__question');
+        if (!question) return;
+
+        question.addEventListener('click', function () {
+            const isActive = item.classList.contains('active');
+
+            // Close all
+            faqItems.forEach(function (other) {
+                other.classList.remove('active');
+                other.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+            });
+
+            // Open clicked (unless it was already open)
+            if (!isActive) {
+                item.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
     // ---------- Contact Form ----------
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
+            const nameField = document.getElementById('name');
+            const emailField = document.getElementById('email');
             const serviceSelect = document.getElementById('service');
+            const messageField = document.getElementById('message');
+
+            const name = nameField.value.trim();
+            const email = emailField.value.trim();
             const service = serviceSelect.options[serviceSelect.selectedIndex].text;
-            const message = document.getElementById('message').value.trim();
+            const message = messageField.value.trim();
+
+            // Validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const emailGroup = emailField.closest('.form__group');
+
+            // Clear previous error
+            emailGroup.classList.remove('error');
+            const oldError = emailGroup.querySelector('.form__error');
+            if (oldError) oldError.remove();
+
+            if (!email) {
+                emailGroup.classList.add('error');
+                const errMsg = document.createElement('span');
+                errMsg.className = 'form__error';
+                const dict = typeof window.getDict === 'function' ? window.getDict() : null;
+                const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'zh';
+                errMsg.textContent = (dict && dict['form.email_required'] ? dict['form.email_required'][lang] : '请输入邮箱地址');
+                emailGroup.appendChild(errMsg);
+                emailField.focus();
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                emailGroup.classList.add('error');
+                const errMsg = document.createElement('span');
+                errMsg.className = 'form__error';
+                const dict = typeof window.getDict === 'function' ? window.getDict() : null;
+                const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'zh';
+                errMsg.textContent = (dict && dict['form.email_invalid'] ? dict['form.email_invalid'][lang] : '请输入有效的邮箱地址');
+                emailGroup.appendChild(errMsg);
+                emailField.focus();
+                return;
+            }
 
             const recipient = 'mtnk2009@163.com';
             const subject = encodeURIComponent('[MarsX] Security Consulting Inquiry from ' + name);

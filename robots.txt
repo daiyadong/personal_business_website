@@ -1,0 +1,8 @@
+# MarsX — robots.txt
+# Allow all crawlers, point to sitemap
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://marsx.site/sitemap.xml
