@@ -25,7 +25,8 @@
 personal-business-website/
 ├── index.html            # 主页面（含 JSON-LD 结构化数据）
 ├── css/
-│   └── style.css         # 样式文件（CSS 变量 + 响应式 + 双主题）
+│   ├── style.css         # 样式文件（CSS 变量 + 响应式 + 双主题）
+│   └── icons.css         # 自托管 SVG 图标（替代 Font Awesome CDN）
 ├── js/
 │   ├── i18n.js           # 国际化词典 & 主题切换
 │   └── main.js           # 交互脚本（菜单/滚动/动效/FAQ/表单校验）
