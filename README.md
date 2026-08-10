@@ -1,19 +1,19 @@
-# CyGuard — 专业网络安全服务官网
+# MarsX — 全链路安全方案咨询
 
 > APP安全评估 · Web渗透测试 · IoT安全 · 云安全 · AI安全 · GDPR/CRA合规
 
-现代化个人网络安全业务官网，展示安全服务能力、典型案例与联系方式。
+现代化个人安全咨询业务官网，展示安全服务能力、典型案例与联系方式。
 
 ## ✨ 特点
 
-- 🛡️ 网络安全主题设计，暗色系 + 终端绿配色
-- 📱 完全响应式，适配手机、平板与桌面端
-- ⚡ 纯静态 HTML/CSS/JS，加载速度快
+- 🛡️ 网络安全主题设计，支持深色/浅色双主题
+- 🌐 中英文双语切换，默认中文
+- 📱 完全响应式，适配手机（480px）、平板（768px/1024px）与桌面端（1400px+）
+- ⚡ 纯静态 HTML/CSS/JS，零框架依赖，加载速度快
 - 🔍 SEO 友好，支持 Open Graph 标签
-- 🎭 滚动渐显动画与交互效果
-- 📬 内置联系表单（含服务类型选择）
-- 🔐 PGP 密钥展示，强调通信安全
-- ♿ 键盘无障碍访问支持
+- 🎭 滚动渐显动画与技能条动效
+- 📬 内置联系表单（含服务类型选择），一键唤起邮件客户端
+- ♿ 键盘无障碍访问支持（Escape 关闭菜单）
 
 ## 📂 项目结构
 
@@ -21,11 +21,12 @@
 personal-business-website/
 ├── index.html            # 主页面
 ├── css/
-│   └── style.css         # 样式文件
+│   └── style.css         # 样式文件（CSS 变量 + 响应式断点 + 双主题）
 ├── js/
-│   └── main.js           # 交互脚本
+│   ├── i18n.js           # 国际化词典 & 主题切换
+│   └── main.js           # 交互脚本（菜单/滚动/动效/表单）
 ├── CNAME                 # 自定义域名配置
-└── README.md             # 项目说明
+└── README.md
 ```
 
 ## 🚀 本地运行
@@ -48,9 +49,9 @@ open http://localhost:8080
 cd personal-business-website
 git init
 git add .
-git commit -m "Initial commit: CyGuard security website"
+git commit -m "Initial commit"
 git branch -M main
-git remote add origin https://github.com/<你的用户名>/personal-business-website.git
+git remote add origin git@github.com:<你的用户名>/personal-business-website.git
 git push -u origin main
 ```
 
@@ -62,14 +63,14 @@ git push -u origin main
 
 | 修改项 | 位置 |
 |--------|------|
-| 姓名/品牌 | `index.html` 中搜索 "CyGuard" |
+| 品牌名称 | `index.html` 中搜索 "MarsX" |
 | 认证标识 | Hero 区域的 `.hero__badge` |
-| 联系方式 | Contact 区域的邮箱/电话 |
-| PGP 指纹 | `.contact__pgp` 中的 `code` |
+| 联系方式 | Contact 区域的邮箱/微信号 |
 | 服务内容 | Services 区域的 6 张卡片 |
 | 项目案例 | Cases 区域的案例卡片 |
 | 配色方案 | `css/style.css` 的 `:root` 变量 |
-| 社交链接 | `.contact__social` |
+| 翻译文本 | `js/i18n.js` 的 `DICT` 对象 |
+| 主题切换 | `js/i18n.js` 的 `switchTheme` 函数 |
 
 ## 📄 许可
 

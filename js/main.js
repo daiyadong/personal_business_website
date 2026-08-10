@@ -1,11 +1,12 @@
 /* ============================================================
-   Personal Business Website — Interactive Scripts
+   MarsX — Interactive Scripts
    ============================================================ */
-
 (function () {
     'use strict';
 
-    // ---------- DOM References ----------
+    // ============================================================
+    // DOM References
+    // ============================================================
     const header = document.getElementById('header');
     const navMenu = document.getElementById('nav-menu');
     const navToggle = document.getElementById('nav-toggle');
@@ -15,7 +16,6 @@
     const sections = document.querySelectorAll('section[id]');
 
     // ---------- Mobile Menu ----------
-    // Create overlay
     let overlay = document.querySelector('.nav__overlay');
     if (!overlay) {
         overlay = document.createElement('div');
@@ -38,39 +38,28 @@
     }
 
     navToggle.addEventListener('click', function () {
-        if (navMenu.classList.contains('show')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
+        navMenu.classList.contains('show') ? closeMenu() : openMenu();
     });
 
     overlay.addEventListener('click', closeMenu);
 
-    // Close menu on nav link click
     navLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-            closeMenu();
-        });
+        link.addEventListener('click', closeMenu);
     });
 
     // ---------- Header Scroll Effect ----------
     function updateHeader() {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+        header.classList.toggle('scrolled', window.scrollY > 50);
     }
 
     // ---------- Active Nav Link ----------
     function updateActiveLink() {
-        var scrollY = window.pageYOffset;
+        const scrollY = window.pageYOffset;
 
         sections.forEach(function (section) {
-            var sectionHeight = section.offsetHeight;
-            var sectionTop = section.offsetTop - 100;
-            var sectionId = section.getAttribute('id');
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
 
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
                 navLinks.forEach(function (link) {
@@ -85,54 +74,44 @@
 
     // ---------- Scroll Top Button ----------
     function updateScrollTop() {
-        if (window.scrollY > 500) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
     }
 
     // ---------- Scroll Reveal Animation ----------
-    var revealElements = document.querySelectorAll(
+    const revealElements = document.querySelectorAll(
         '.service__card, .portfolio__card, .testimonial__card, .about__highlight, .skill__item'
     );
 
     function revealOnScroll() {
-        var windowHeight = window.innerHeight;
-        var revealPoint = 120;
+        const windowHeight = window.innerHeight;
+        const revealPoint = 120;
 
         revealElements.forEach(function (el) {
-            var revealTop = el.getBoundingClientRect().top;
-
-            if (revealTop < windowHeight - revealPoint) {
+            if (el.getBoundingClientRect().top < windowHeight - revealPoint) {
                 el.classList.add('revealed');
             }
         });
     }
 
-    // Add reveal class to elements
     revealElements.forEach(function (el) {
         el.classList.add('reveal');
     });
 
     // ---------- Skill Bar Animation ----------
-    var skillBars = document.querySelectorAll('.skill__fill');
-    var skillAnimated = false;
+    const skillBars = document.querySelectorAll('.skill__fill');
+    let skillAnimated = false;
 
     function animateSkillBars() {
-        var skillsSection = document.querySelector('.about__skills');
+        const skillsSection = document.querySelector('.about__skills');
         if (!skillsSection || skillAnimated) return;
 
-        var skillsTop = skillsSection.getBoundingClientRect().top;
-        var windowHeight = window.innerHeight;
-
-        if (skillsTop < windowHeight - 100) {
+        if (skillsSection.getBoundingClientRect().top < window.innerHeight - 100) {
             skillAnimated = true;
             skillBars.forEach(function (bar) {
-                var width = bar.style.width;
+                const targetWidth = bar.style.width;
                 bar.style.width = '0';
                 setTimeout(function () {
-                    bar.style.width = width;
+                    bar.style.width = targetWidth;
                 }, 100);
             });
         }
@@ -143,32 +122,38 @@
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            var name = document.getElementById('name').value.trim();
-            var email = document.getElementById('email').value.trim();
-            var serviceSelect = document.getElementById('service');
-            var service = serviceSelect.options[serviceSelect.selectedIndex].text;
-            var message = document.getElementById('message').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const serviceSelect = document.getElementById('service');
+            const service = serviceSelect.options[serviceSelect.selectedIndex].text;
+            const message = document.getElementById('message').value.trim();
 
-            var recipient = 'mtnk2009@163.com';
-            var subject = encodeURIComponent('[MarsX 咨询] 来自 ' + name + ' 的安全咨询需求');
-            var body = encodeURIComponent(
-                '姓名：' + name + '\n' +
-                '邮箱：' + email + '\n' +
-                '感兴趣的服务：' + service + '\n' +
-                '需求描述：\n' + message + '\n\n' +
-                '---\n此邮件通过 MarsX 网站联系表单发送'
+            const recipient = 'mtnk2009@163.com';
+            const subject = encodeURIComponent('[MarsX] Security Consulting Inquiry from ' + name);
+            const body = encodeURIComponent(
+                'Name: ' + name + '\n' +
+                'Email: ' + email + '\n' +
+                'Service of Interest: ' + service + '\n' +
+                'Requirements:\n' + message + '\n\n' +
+                '---\nThis email was sent via the MarsX website contact form'
             );
 
             window.location.href = 'mailto:' + recipient + '?subject=' + subject + '&body=' + body;
 
-            // Show brief feedback
-            var btn = contactForm.querySelector('button[type="submit"]');
-            var originalHTML = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> 已打开邮件客户端';
-            btn.style.background = 'var(--color-success, #22c55e)';
+            // I18n-aware success feedback
+            const btn = contactForm.querySelector('button[type="submit"]');
+            const originalHTML = btn.innerHTML;
+            const dict = typeof window.getDict === 'function' ? window.getDict() : null;
+            const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'zh';
+            const successText = dict && dict['form.success'] ? dict['form.success'][lang] : '已打开邮件客户端';
+
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> ' + successText;
+            btn.style.background = 'var(--primary)';
+            btn.style.color = '#0a1628';
             setTimeout(function () {
                 btn.innerHTML = originalHTML;
                 btn.style.background = '';
+                btn.style.color = '';
             }, 3000);
         });
     }
@@ -176,10 +161,10 @@
     // ---------- Smooth Scroll for Anchor Links ----------
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
-            var targetId = this.getAttribute('href');
+            const targetId = this.getAttribute('href');
             if (targetId === '#') return;
 
-            var target = document.querySelector(targetId);
+            const target = document.querySelector(targetId);
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth' });
@@ -188,7 +173,7 @@
     });
 
     // ---------- Combined Scroll Handler (throttled) ----------
-    var ticking = false;
+    let ticking = false;
 
     function onScroll() {
         if (!ticking) {
