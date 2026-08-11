@@ -791,6 +791,7 @@ ul { list-style: none; }
 
 .footer__logo { font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 10px; color: #fff; }
 .footer__logo i { color: var(--primary); }
+.footer__logo-icon { width: 1.3rem; height: 1.3rem; flex-shrink: 0; }
 
 .footer__links h4 {
     font-size: .85rem; font-weight: 700;

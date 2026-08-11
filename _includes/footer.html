@@ -4,7 +4,22 @@
         <div class="footer__grid">
             <div class="footer__brand">
                 <a href="/" class="footer__logo">
-                    <i class="fa-solid fa-shield-halved"></i> MarsX
+                    <svg class="footer__logo-icon" width="28" height="28" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                      <defs>
+                        <linearGradient id="footer-logo-grad" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stop-color="#00ff41"/>
+                          <stop offset="50%" stop-color="#00d4aa"/>
+                          <stop offset="100%" stop-color="#0ea5e9"/>
+                        </linearGradient>
+                      </defs>
+                      <polygon points="24,3 41,12 41,33 24,45 7,33 7,12" fill="none" stroke="url(#footer-logo-grad)" stroke-width="1.2" opacity="0.7"/>
+                      <polyline points="12,17 17,20 12,23" fill="none" stroke="url(#footer-logo-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <rect x="19" y="21" width="5" height="2.5" rx="1.25" fill="url(#footer-logo-grad)"/>
+                      <circle cx="7" cy="12" r="1.5" fill="url(#footer-logo-grad)" opacity="0.6"/>
+                      <circle cx="41" cy="12" r="1.5" fill="url(#footer-logo-grad)" opacity="0.6"/>
+                      <circle cx="24" cy="3" r="1.5" fill="url(#footer-logo-grad)" opacity="0.6"/>
+                    </svg>
+                    MarsX
                 </a>
                 <p data-i18n="footer.brand_desc">全链路安全方案咨询 — 架构设计 · SDL体系 · 合规治理 · 产品安全</p>
             </div>
