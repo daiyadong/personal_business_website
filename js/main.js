@@ -156,6 +156,13 @@
             const service = serviceSelect.options[serviceSelect.selectedIndex].text;
             const message = messageField.value.trim();
 
+            // i18n helpers
+            const dict = typeof window.getDict === 'function' ? window.getDict() : null;
+            const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'zh';
+            const t = function (key, fallback) {
+                return (dict && dict[key] && dict[key][lang]) ? dict[key][lang] : fallback;
+            };
+
             // Validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const emailGroup = emailField.closest('.form__group');
@@ -169,9 +176,7 @@
                 emailGroup.classList.add('error');
                 const errMsg = document.createElement('span');
                 errMsg.className = 'form__error';
-                const dict = typeof window.getDict === 'function' ? window.getDict() : null;
-                const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'zh';
-                errMsg.textContent = (dict && dict['form.email_required'] ? dict['form.email_required'][lang] : '请输入邮箱地址');
+                errMsg.textContent = t('form.email_required', '请输入邮箱地址');
                 emailGroup.appendChild(errMsg);
                 emailField.focus();
                 return;
@@ -181,19 +186,12 @@
                 emailGroup.classList.add('error');
                 const errMsg = document.createElement('span');
                 errMsg.className = 'form__error';
-                const dict = typeof window.getDict === 'function' ? window.getDict() : null;
-                const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'zh';
-                errMsg.textContent = (dict && dict['form.email_invalid'] ? dict['form.email_invalid'][lang] : '请输入有效的邮箱地址');
+                errMsg.textContent = t('form.email_invalid', '请输入有效的邮箱地址');
                 emailGroup.appendChild(errMsg);
                 emailField.focus();
                 return;
             }
 
-            const dict = typeof window.getDict === 'function' ? window.getDict() : null;
-            const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'zh';
-            const t = function (key, fallback) {
-                return (dict && dict[key] && dict[key][lang]) ? dict[key][lang] : fallback;
-            };
             const recipient = 'mtnk2009@163.com';
             const subjectLabel = t('form.email_subject', 'MarsX 安全咨询');
             const nameLabel = t('form.email_name', '姓名');
@@ -215,9 +213,7 @@
             // I18n-aware success feedback
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalHTML = btn.innerHTML;
-            const dict = typeof window.getDict === 'function' ? window.getDict() : null;
-            const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'zh';
-            const successText = dict && dict['form.success'] ? dict['form.success'][lang] : '已打开邮件客户端';
+            const successText = t('form.success', '已打开邮件客户端');
 
             btn.innerHTML = '<i class="fa-solid fa-check"></i> ' + successText;
             btn.style.background = 'var(--primary)';
