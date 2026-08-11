@@ -20,6 +20,12 @@
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="MarsX">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+
+<!-- hreflang bilingual SEO -->
+<link rel="alternate" hreflang="zh-CN" href="https://marsx.site{{ page.url | remove: 'index.html' }}">
+<link rel="alternate" hreflang="en" href="https://marsx.site{{ page.url | remove: 'index.html' }}">
+<link rel="alternate" hreflang="x-default" href="https://marsx.site{{ page.url | remove: 'index.html' }}">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
