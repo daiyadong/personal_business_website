@@ -189,14 +189,25 @@
                 return;
             }
 
+            const dict = typeof window.getDict === 'function' ? window.getDict() : null;
+            const lang = typeof window.getCurrentLang === 'function' ? window.getCurrentLang() : 'zh';
+            const t = function (key, fallback) {
+                return (dict && dict[key] && dict[key][lang]) ? dict[key][lang] : fallback;
+            };
             const recipient = 'mtnk2009@163.com';
-            const subject = encodeURIComponent('[MarsX] Security Consulting Inquiry from ' + name);
+            const subjectLabel = t('form.email_subject', 'MarsX 安全咨询');
+            const nameLabel = t('form.email_name', '姓名');
+            const emailLabel = t('form.email_email', '邮箱');
+            const serviceLabel = t('form.email_service', '感兴趣的服务');
+            const msgLabel = t('form.email_message', '需求描述');
+            const footerLabel = t('form.email_footer', '此邮件通过 MarsX 网站联系表单发送');
+            const subject = encodeURIComponent('[' + subjectLabel + '] ' + name);
             const body = encodeURIComponent(
-                'Name: ' + name + '\n' +
-                'Email: ' + email + '\n' +
-                'Service of Interest: ' + service + '\n' +
-                'Requirements:\n' + message + '\n\n' +
-                '---\nThis email was sent via the MarsX website contact form'
+                nameLabel + ': ' + name + '\n' +
+                emailLabel + ': ' + email + '\n' +
+                serviceLabel + ': ' + service + '\n' +
+                msgLabel + ':\n' + message + '\n\n' +
+                '---\n' + footerLabel
             );
 
             window.location.href = 'mailto:' + recipient + '?subject=' + subject + '&body=' + body;

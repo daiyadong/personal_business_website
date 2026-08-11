@@ -185,6 +185,12 @@
         'form.success':          { zh: '已打开邮件客户端', en: 'Email client opened' },
         'form.email_required':  { zh: '请输入邮箱地址', en: 'Please enter your email address' },
         'form.email_invalid':   { zh: '请输入有效的邮箱地址', en: 'Please enter a valid email address' },
+        'form.email_subject':   { zh: 'MarsX 安全咨询', en: 'MarsX Security Consulting' },
+        'form.email_name':      { zh: '姓名', en: 'Name' },
+        'form.email_email':     { zh: '邮箱', en: 'Email' },
+        'form.email_service':   { zh: '感兴趣的服务', en: 'Service of Interest' },
+        'form.email_message':   { zh: '需求描述', en: 'Requirements' },
+        'form.email_footer':    { zh: '此邮件通过 MarsX 网站联系表单发送', en: 'This email was sent via the MarsX website contact form' },
         // ------- 服务流程 ------- //
         'process.title':        { zh: '服务流程',       en: 'Process & Methodology' },
         'process.subtitle':     { zh: '系统化方法论，确保每个环节可落地、可验证', en: 'A Systematic Methodology — Every Step Deliverable and Verifiable' },
