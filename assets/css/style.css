@@ -697,6 +697,30 @@ ul { list-style: none; }
 .contact__item strong { display: block; font-size: .88rem; color: var(--text); margin-bottom: 2px; }
 .contact__item span { font-size: .93rem; color: var(--text-light); }
 
+.contact__qr {
+    margin-top: 8px;
+    padding: 16px;
+    background: #fff;
+    border-radius: var(--radius-md);
+    display: inline-block;
+    box-shadow: 0 2px 12px rgba(0,0,0,.15);
+}
+.contact__qr img {
+    display: block;
+    border-radius: 4px;
+}
+.contact__qr-label {
+    display: block;
+    text-align: center;
+    font-size: .78rem;
+    color: #666;
+    margin-top: 8px;
+}
+
+[data-theme="light"] .contact__qr {
+    box-shadow: 0 2px 12px rgba(0,0,0,.1);
+}
+
 /* Form */
 .contact__form {
     background: var(--bg-card);
