@@ -9,8 +9,8 @@
 - 🛡️ 网络安全主题设计，全页面深色/浅色双主题（默认深色），页脚等所有区域均适配
 - 🌐 中英文双语切换，默认中文
 - 📱 完全响应式，适配手机（480px）、平板（768px/1024px）与桌面端（1400px+）
-- ⚡ 纯静态 HTML/CSS/JS，零框架依赖，加载速度快
-- 🔍 全面 SEO 优化：JSON-LD 结构化数据（ProfessionalService + FAQ）、sitemap、robots.txt、Open Graph & Twitter Cards
+- ⚡ Jekyll 静态站点生成，GitHub Pages 原生部署
+- 🔍 全面 SEO 优化：JSON-LD 结构化数据（ProfessionalService + FAQ）、动态 sitemap、robots.txt、Open Graph & Twitter Cards（含 og:image）
 - 🎓 教育背景 & 专业认证展示
 - 📋 服务流程展示（5 步横向步骤条，移动端纵向时间线）
 - 🛠 技术栈与工具链展示（4 大领域分类卡片）
@@ -18,21 +18,54 @@
 - 🎭 滚动渐显动画与技能条动效
 - 📬 内置联系表单（含服务类型选择 + 邮箱格式校验），一键唤起邮件客户端
 - ♿ 键盘无障碍访问支持（Escape 关闭菜单）
+- 📝 技术博客（Jekyll `_posts`，Markdown 写作）
+- 🖼️ 品牌社交分享图（og:image）+ favicon
 
 ## 📂 项目结构
 
 ```
 personal-business-website/
-├── index.html            # 主页面（含 JSON-LD 结构化数据）
-├── css/
-│   ├── style.css         # 样式文件（CSS 变量 + 响应式 + 双主题）
-│   └── icons.css         # 自托管 SVG 图标（替代 Font Awesome CDN）
-├── js/
-│   ├── i18n.js           # 国际化词典 & 主题切换
-│   └── main.js           # 交互脚本（菜单/滚动/动效/FAQ/表单校验）
-├── robots.txt            # 搜索引擎爬虫规则
-├── sitemap.xml           # 站点地图
-├── CNAME                 # 自定义域名配置
+├── _config.yml                # Jekyll 配置
+├── _layouts/
+│   ├── default.html           # 基础布局（head + nav + footer）
+│   └── post.html              # 博客文章布局
+├── _includes/
+│   ├── head.html              # <head> meta 标签、CSS 链接、SEO
+│   ├── structured-data.html   # JSON-LD 结构化数据
+│   ├── nav.html               # 导航栏
+│   ├── footer.html            # 页脚
+│   ├── hero.html              # 首屏
+│   ├── about.html             # 关于我
+│   ├── services.html          # 服务项目 6 卡片
+│   ├── process.html           # 服务流程 5 步
+│   ├── cases.html             # 典型案例 3 卡片
+│   ├── tech-stack.html        # 技术栈 4 领域
+│   ├── testimonials.html      # 客户评价
+│   ├── faq.html               # 常见问题 6 项
+│   └── contact.html           # 联系方式 + 表单
+├── _posts/                    # 博客文章（Markdown）
+│   ├── 2026-08-10-sdl-security-left-shift.md
+│   └── 2026-08-11-iot-full-chain-security.md
+├── assets/
+│   ├── css/
+│   │   ├── style.css          # 样式文件（CSS 变量 + 响应式 + 双主题）
+│   │   └── icons.css          # 自托管 SVG 图标（替代 Font Awesome CDN）
+│   ├── js/
+│   │   ├── i18n.js            # 国际化词典 & 主题切换
+│   │   └── main.js            # 交互脚本（菜单/滚动/动效/FAQ/表单校验）
+│   └── images/
+│       ├── og-image.svg       # 社交分享图（1200×630）
+│       └── favicon.svg        # 浏览器标签页图标
+├── services/
+│   └── index.html             # 服务详情页
+├── cases/
+│   └── index.html             # 案例详情页
+├── blog/
+│   └── index.html             # 博客列表页（分页）
+├── index.html                 # 主页
+├── 404.html                   # 自定义 404 页面
+├── robots.txt                 # 搜索引擎爬虫规则
+├── CNAME                      # 自定义域名配置
 └── README.md
 ```
 
@@ -41,58 +74,72 @@ personal-business-website/
 ```bash
 cd personal-business-website
 
-# Python 3
-python3 -m http.server 8080
+# 安装 Jekyll（需要 Ruby）
+gem install bundler jekyll
+
+# 启动本地服务器
+jekyll serve
 
 # 浏览器访问
-open http://localhost:8080
+open http://localhost:4000
 ```
-
-或者直接在浏览器中打开 `index.html`。
 
 ## 🌐 部署到 GitHub Pages
 
+直接 push 到 `main` 分支即可。GitHub Pages 会自动使用 Jekyll 构建站点。
+
 ```bash
 cd personal-business-website
-git init
 git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin git@github.com:<你的用户名>/personal-business-website.git
-git push -u origin main
+git commit -m "Update site"
+git push origin main
 ```
-
-然后在仓库 Settings → Pages → 选择 `main` 分支 → Save。
 
 **绑定自定义域名**：编辑 `CNAME` 文件写入域名，在 DNS 服务商添加 CNAME 记录指向 `<username>.github.io`。
 
 ## 📋 页面结构
 
-| Section | 内容 |
-|---------|------|
-| Hero | 品牌介绍、统计数据（20+/60+/20+/16+） |
-| 关于我 | 个人简介、核心能力亮点、教育 & 认证 |
-| 服务项目 | 6 张服务卡片（APP/Web/IoT/云/AI/合规） |
-| 服务流程 | 5 步咨询方法论（需求沟通→持续运营） |
-| 典型案例 | 3 个行业案例（金融/医疗/IoT） |
-| 技术栈 | 4 领域工具链（安全测试/云/DevSecOps/合规） |
-| 客户评价 | 3 条客户反馈 |
-| 常见问题 | 6 个 FAQ 手风琴折叠面板 |
-| 联系方式 | 联系信息 + 联系表单（含邮箱校验） |
+| 页面 | URL | 内容 |
+|------|-----|------|
+| 主页 | `/` | Hero、关于我、服务项目、服务流程、典型案例、技术栈、客户评价、FAQ、联系方式 |
+| 服务详情 | `/services/` | 6 大服务领域详细说明（范围、交付物、方法论） |
+| 案例详情 | `/cases/` | 3 个行业案例深度解读（背景、方案、成果） |
+| 博客列表 | `/blog/` | 技术文章列表，支持分页 |
+| 博客文章 | `/blog/:year/:month/:title/` | 单篇文章（Markdown 渲染） |
+| 404 | `/404.html` | 自定义 404 页面 |
 
 ## 🛠 自定义修改
 
 | 修改项 | 位置 |
 |--------|------|
-| 品牌名称 | `index.html` 中搜索 "MarsX" |
-| 联系方式 | Contact 区域的邮箱/微信号 |
-| 服务内容 | Services 区域的 6 张卡片 |
-| 项目案例 | Cases 区域的案例卡片 |
-| FAQ 内容 | FAQ 区域的问答 + `js/i18n.js` 翻译 |
-| 技术栈标签 | Tech Stack 区域的 `<span>` 标签 |
-| 配色方案 | `css/style.css` 的 `:root` 变量 |
-| 翻译文本 | `js/i18n.js` 的 `DICT` 对象 |
-| 结构化数据 | `index.html` 的 `<script type="application/ld+json">` |
+| 品牌名称 | 搜索所有文件中的 "MarsX" |
+| 联系方式 | `_includes/contact.html` |
+| 服务内容 | `_includes/services.html` + `services/index.html` |
+| 项目案例 | `_includes/cases.html` + `cases/index.html` |
+| FAQ 内容 | `_includes/faq.html` + `assets/js/i18n.js` |
+| 技术栈标签 | `_includes/tech-stack.html` |
+| 配色方案 | `assets/css/style.css` 的 `:root` 变量 |
+| 翻译文本 | `assets/js/i18n.js` 的 `DICT` 对象 |
+| 结构化数据 | `_includes/structured-data.html` |
+| 社交分享图 | `assets/images/og-image.svg` |
+
+## 📝 添加博客文章
+
+在 `_posts/` 目录下创建 Markdown 文件，文件名格式：`YYYY-MM-DD-title.md`
+
+```markdown
+---
+layout: post
+title: 文章标题
+date: 2026-08-15
+categories: [分类1, 分类2]
+description: 文章摘要（用于 SEO）
+---
+
+文章内容（Markdown 格式）...
+```
+
+push 后 GitHub Pages 会自动构建并发布。
 
 ## 📄 许可
 

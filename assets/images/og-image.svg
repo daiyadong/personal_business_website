@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="100%" stop-color="#0f1d35"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00d4aa"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.03" stroke="#00d4aa" stroke-width="0.5">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="472" x2="1200" y2="472"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <!-- Shield Icon -->
+  <g transform="translate(600,210)" fill="url(#accent)">
+    <path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8v378C394 378 431.1 230.1 432 141.4L256 66.8z" transform="translate(-256,-5) scale(1.2)"/>
+  </g>
+
+  <!-- Brand Name -->
+  <text x="600" y="430" text-anchor="middle" font-family="'Inter','Noto Sans SC',sans-serif" font-size="72" font-weight="800" fill="url(#accent)" letter-spacing="4">MarsX</text>
+
+  <!-- Tagline -->
+  <text x="600" y="500" text-anchor="middle" font-family="'Noto Sans SC','Inter',sans-serif" font-size="32" fill="#94a3b8" letter-spacing="2">全链路安全方案咨询</text>
+
+  <!-- Bottom accent line -->
+  <rect x="500" y="540" width="200" height="3" rx="1.5" fill="url(#accent)"/>
+</svg>

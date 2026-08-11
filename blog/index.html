@@ -1,0 +1,44 @@
+---
+layout: default
+title: 技术博客 — MarsX
+description: 安全技术博客 — 产品安全架构、SDL体系建设、IoT安全、云安全、AI安全、合规治理等领域的技术分享与最佳实践
+---
+<section class="page-hero section">
+    <div class="container">
+        <div class="section__header">
+            <h1 class="section__title">技术博客</h1>
+            <p class="section__subtitle">分享安全架构、SDL 实践、合规治理等领域的技术洞察与最佳实践</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="blog__grid">
+            {% for post in paginator.posts %}
+            <article class="blog-card">
+                <div class="blog-card__content">
+                    <time class="blog-card__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+                    <h2 class="blog-card__title">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                    </h2>
+                    <p class="blog-card__excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+                    <a href="{{ post.url }}" class="blog-card__link">阅读全文 &rarr;</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        {% if paginator.total_pages > 1 %}
+        <nav class="pagination">
+            {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path }}" class="pagination__prev">&larr; 上一页</a>
+            {% endif %}
+            <span class="pagination__info">第 {{ paginator.page }} 页 / 共 {{ paginator.total_pages }} 页</span>
+            {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path }}" class="pagination__next">下一页 &rarr;</a>
+            {% endif %}
+        </nav>
+        {% endif %}
+    </div>
+</section>

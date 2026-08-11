@@ -1,0 +1,34 @@
+# MarsX — Jekyll Configuration
+title: MarsX 安全咨询
+description: 全链路安全方案咨询 — 产品安全架构 · SDL · 合规
+url: https://marsx.site
+baseurl: ""
+
+# Blog
+permalink: /blog/:year/:month/:title/
+paginate: 6
+paginate_path: /blog/page:num/
+
+# Plugins (GitHub Pages whitelist)
+plugins:
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Defaults
+defaults:
+  - scope:
+      path: "_posts"
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Exclude from build
+exclude:
+  - README.md
+  - CNAME
+  - .gitignore
+  - .claude/
+  - .DS_Store

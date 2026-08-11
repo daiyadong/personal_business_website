@@ -1,0 +1,71 @@
+<!-- ========== 联系方式 ========== -->
+<section class="contact section" id="contact">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title" data-i18n="contact.title">联系方式</h2>
+            <p class="section__subtitle" data-i18n="contact.subtitle">需要全链路安全方案咨询？欢迎随时联系</p>
+        </div>
+        <div class="contact__grid">
+            <div class="contact__info">
+                <h3 data-i18n="contact.heading">联系信息</h3>
+                <p data-i18n="contact.desc">无论是安全架构设计、SDL 体系建设、合规方案还是安全治理咨询，都可以通过以下方式联系我。所有沟通内容严格保密。</p>
+                <div class="contact__items">
+                    <div class="contact__item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <strong data-i18n="contact.email_label">邮箱</strong>
+                            <span>mtnk2009@163.com</span>
+                        </div>
+                    </div>
+                    <div class="contact__item">
+                        <i class="fa-brands fa-weixin"></i>
+                        <div>
+                            <strong data-i18n="contact.wechat_label">微信</strong>
+                            <span>mtnk2011</span>
+                        </div>
+                    </div>
+                    <div class="contact__item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <strong data-i18n="contact.location_label">所在地</strong>
+                            <span data-i18n="contact.location_value">中国 · 深圳</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="contact__form" id="contact-form">
+                <div class="form__group">
+                    <label for="name" data-i18n="form.name_label">姓名</label>
+                    <input type="text" id="name" name="name" data-i18n="form.name_placeholder" data-i18n-type="placeholder" placeholder="请输入您的姓名" required>
+                </div>
+                <div class="form__group">
+                    <label for="email" data-i18n="form.email_label">邮箱</label>
+                    <input type="email" id="email" name="email" data-i18n="form.email_placeholder" data-i18n-type="placeholder" placeholder="请输入您的邮箱地址" required>
+                </div>
+                <div class="form__group">
+                    <label for="service" data-i18n="form.service_label">感兴趣的服务</label>
+                    <select id="service" name="service">
+                        <option value="" data-i18n="form.service_default">请选择...</option>
+                        <option value="app" data-i18n="form.service_opt1">APP 安全评估</option>
+                        <option value="web" data-i18n="form.service_opt2">网站及后端系统安全评估</option>
+                        <option value="iot" data-i18n="form.service_opt3">IoT 安全</option>
+                        <option value="cloud" data-i18n="form.service_opt4">云安全</option>
+                        <option value="ai" data-i18n="form.service_opt5">AI 安全</option>
+                        <option value="gdpr" data-i18n="form.service_opt6">GDPR / CRA 合规</option>
+                        <option value="other" data-i18n="form.service_opt7">其他 / 综合</option>
+                    </select>
+                </div>
+                <div class="form__group">
+                    <label for="message" data-i18n="form.message_label">需求描述</label>
+                    <textarea id="message" name="message" rows="5" data-i18n="form.message_placeholder" data-i18n-type="placeholder" placeholder="请描述您的安全需求、目标范围等..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full">
+                    <i class="fa-solid fa-paper-plane"></i> <span data-i18n="form.submit">发送消息</span>
+                </button>
+                <p class="form__note">
+                    <i class="fa-solid fa-lock"></i> <span data-i18n="form.note">所有信息将严格保密，不会与第三方共享</span>
+                </p>
+            </form>
+        </div>
+    </div>
+</section>

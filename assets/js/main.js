@@ -79,7 +79,7 @@
 
     // ---------- Scroll Reveal Animation ----------
     const revealElements = document.querySelectorAll(
-        '.service__card, .portfolio__card, .testimonial__card, .about__highlight, .skill__item, .process__step, .tech__card, .faq__item'
+        '.service__card, .portfolio__card, .testimonial__card, .about__highlight, .skill__item, .process__step, .tech__card, .faq__item, .blog-card, .case-detail__stat'
     );
 
     function revealOnScroll() {
