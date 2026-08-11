@@ -3,6 +3,29 @@ layout: default
 title: 技术博客 — MarsX
 description: 安全技术博客 — 产品安全架构、SDL体系建设、IoT安全、云安全、AI安全、合规治理等领域的技术分享与最佳实践
 ---
+
+<!-- Structured Data: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "MarsX",
+      "item": "{{ site.url }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "技术博客",
+      "item": "{{ site.url }}/blog/"
+    }
+  ]
+}
+</script>
+
 <section class="page-hero section">
     <div class="container">
         <div class="section__header">

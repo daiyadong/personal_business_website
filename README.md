@@ -10,7 +10,7 @@
 - 🌐 中英文双语切换，默认中文
 - 📱 完全响应式，适配手机（480px）、平板（768px/1024px）与桌面端（1400px+）
 - ⚡ Jekyll 静态站点生成，GitHub Pages 原生部署
-- 🔍 全面 SEO 优化：JSON-LD 结构化数据（ProfessionalService + FAQ）、动态 sitemap、robots.txt、Open Graph & Twitter Cards（含 og:image）
+- 🔍 全面 SEO 优化：JSON-LD 结构化数据（ProfessionalService + FAQPage + WebSite + SearchAction + BreadcrumbList + BlogPosting）、动态 sitemap、robots.txt、动态 per-page Open Graph & Twitter Cards（含 og:image）、hreflang 双语标签、百度 SEO（applicable-device / renderer / no-siteapp / no-transform）
 - 🎓 教育背景 & 专业认证展示
 - 📋 服务流程展示（5 步横向步骤条，移动端纵向时间线）
 - 🛠 技术栈与工具链展示（4 大领域分类卡片）

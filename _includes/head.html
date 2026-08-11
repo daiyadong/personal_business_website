@@ -1,46 +1,92 @@
 <!-- ============================================================
    MarsX — Head Meta Tags, CSS, SEO
+   Dynamic per-page title/description/canonical/OG + Baidu SEO
    ============================================================= -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MarsX — 全链路安全方案咨询 | 产品安全架构 · SDL · 合规</title>
-<meta name="description" content="MarsX 全链路安全方案咨询 — 20年经验安全顾问，提供产品安全架构设计、SDL体系建设、安全评估、合规治理，覆盖APP/Web/IoT/云/AI安全及GDPR/CRA/等保合规。">
-<meta name="keywords" content="安全咨询,安全架构,SDL,产品安全,APP安全,IoT安全,云安全,AI安全,GDPR,CRA,等保测评,安全顾问,渗透测试,DevSecOps,安全开发生命周期">
+
+{% comment %}---------- Page Title ----------{% endcomment %}
+{% capture page_title %}{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }} — MarsX{% else %}MarsX — 全链路安全方案咨询 | 产品安全架构 · SDL · 合规{% endif %}{% endcapture %}
+<title>{{ page_title }}</title>
+
+{% comment %}---------- Meta Description ----------{% endcomment %}
+{% capture page_desc %}{% if page.description %}{{ page.description }}{% else %}MarsX 全链路安全方案咨询 — 20年经验安全顾问，提供产品安全架构设计、SDL体系建设、安全评估、合规治理，覆盖APP/Web/IoT/云/AI安全及GDPR/CRA/等保合规。{% endif %}{% endcapture %}
+<meta name="description" content="{{ page_desc }}">
+
+<meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}安全咨询,安全架构,SDL,产品安全,APP安全,IoT安全,云安全,AI安全,GDPR,CRA,等保测评,安全顾问,渗透测试,DevSecOps,安全开发生命周期{% endif %}">
 <meta name="author" content="MarsX">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://marsx.site/">
 
-<!-- Open Graph -->
-<meta property="og:title" content="MarsX — 全链路安全方案咨询 | 产品安全架构 · SDL · 合规">
-<meta property="og:description" content="全链路安全方案咨询 — 从架构设计到合规落地的产品安全伙伴。覆盖APP/Web/IoT/云/AI安全及GDPR/CRA合规。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://marsx.site/">
-<meta property="og:image" content="https://marsx.site/assets/images/og-image.svg">
+{% comment %}---------- Canonical (dynamic per page) ----------{% endcomment %}
+<link rel="canonical" href="{{ site.url }}{{ page.url | remove: 'index.html' }}">
+
+{% comment %}---------- Open Graph ----------{% endcomment %}
+{% capture og_title %}{% if page.og_title %}{{ page.og_title }}{% else %}{{ page_title }}{% endif %}{% endcapture %}
+{% capture og_desc %}{% if page.og_description %}{{ page.og_description }}{% else %}{{ page_desc }}{% endif %}{% endcapture %}
+<meta property="og:title" content="{{ og_title }}">
+<meta property="og:description" content="{{ og_desc }}">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:url" content="{{ site.url }}{{ page.url | remove: 'index.html' }}">
+<meta property="og:image" content="{{ site.url }}/assets/images/og-image.svg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="MarsX">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:locale:alternate" content="en_US">
 
-<!-- hreflang bilingual SEO -->
-<link rel="alternate" hreflang="zh-CN" href="https://marsx.site{{ page.url | remove: 'index.html' }}">
-<link rel="alternate" hreflang="en" href="https://marsx.site{{ page.url | remove: 'index.html' }}">
-<link rel="alternate" hreflang="x-default" href="https://marsx.site{{ page.url | remove: 'index.html' }}">
+{% comment %}---------- hreflang bilingual SEO ----------{% endcomment %}
+<link rel="alternate" hreflang="zh-CN" href="{{ site.url }}{{ page.url | remove: 'index.html' }}">
+<link rel="alternate" hreflang="en" href="{{ site.url }}{{ page.url | remove: 'index.html' }}">
+<link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url | remove: 'index.html' }}">
 
-<!-- Twitter Card -->
+{% comment %}---------- Twitter Card ----------{% endcomment %}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MarsX — 全链路安全方案咨询">
-<meta name="twitter:description" content="全链路安全方案咨询 — 从架构设计到合规落地的产品安全伙伴。覆盖APP/Web/IoT/云/AI安全及GDPR/CRA合规。">
-<meta name="twitter:image" content="https://marsx.site/assets/images/og-image.svg">
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:description" content="{{ og_desc }}">
+<meta name="twitter:image" content="{{ site.url }}/assets/images/og-image.svg">
 
-<!-- Favicon -->
+{% comment %}---------- Baidu SEO ----------{% endcomment %}
+<meta name="baidu-site-verification" content="code-REPLACE-WITH-YOUR-BAIDU-VERIFICATION-CODE">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="format-detection" content="telephone=no">
+
+{% comment %}---------- Favicon ----------{% endcomment %}
 <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
 <link rel="apple-touch-icon" href="/assets/images/favicon.svg">
 
-<!-- Stylesheets -->
+{% comment %}---------- Resource Hints ----------{% endcomment %}
+<link rel="dns-prefetch" href="{{ site.url }}">
+
+{% comment %}---------- Stylesheets ----------{% endcomment %}
 <link rel="stylesheet" href="/assets/css/style.css?v=7">
 <link rel="stylesheet" href="/assets/css/icons.css?v=1">
 
+{% comment %}---------- JSON-LD: WebSite + SearchAction (all pages) ----------{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MarsX",
+  "url": "{{ site.url }}/",
+  "description": "{{ site.description }}",
+  "inLanguage": "zh-CN",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ site.url }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{% comment %}---------- JSON-LD: ProfessionalService + FAQPage (homepage only) ----------{% endcomment %}
 {% if page.url == "/" %}
 {% include structured-data.html %}
 {% endif %}
