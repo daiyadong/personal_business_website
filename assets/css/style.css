@@ -183,6 +183,12 @@ ul { list-style: none; }
 
 .nav__logo i { color: var(--primary); font-size: 1.5rem; }
 
+.nav__logo-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+}
+
 .nav__menu { display: flex; align-items: center; gap: 8px; }
 
 .nav__link {
