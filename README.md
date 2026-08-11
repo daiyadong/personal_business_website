@@ -74,11 +74,11 @@ personal-business-website/
 ```bash
 cd personal-business-website
 
-# 安装 Jekyll（需要 Ruby）
-gem install bundler jekyll
+# 安装依赖
+bundle install
 
-# 启动本地服务器
-jekyll serve
+# 启动本地服务器（自动热更新）
+bundle exec jekyll serve
 
 # 浏览器访问
 open http://localhost:4000
